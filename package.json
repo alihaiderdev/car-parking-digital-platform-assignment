@@ -5,9 +5,7 @@
   "license": "MIT",
   "description": "Its an assignment that is provided by Digital Platform Software Company which I have to make using MERN technology and typescript.",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/app.ts",
-    "import": "node seeder.ts",
-    "destroy": "node seeder.ts -d"
+    "dev": "nodemon --config nodemon.json src/app.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
