@@ -5,7 +5,9 @@
   "license": "MIT",
   "description": "Its an assignment that is provided by Digital Platform Software Company which I have to make using MERN technology and typescript.",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/app.ts"
+    "start": "nodemon --config nodemon.json src/app.ts",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -29,7 +31,9 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/morgan": "^1.9.4",
     "@types/node": "^18.16.3",
+    "@types/node-cron": "^3.0.7",
     "@types/yup": "^0.32.0",
+    "concurrently": "^8.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }

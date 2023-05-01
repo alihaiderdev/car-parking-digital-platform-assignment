@@ -19,7 +19,7 @@ export async function findArea(query: FilterQuery<AreaDocument> = {}, options: Q
 
 export async function findAreas(query: FilterQuery<AreaDocument> = {}, options: QueryOptions = {}) {
   try {
-    return await Area.find(query, {}, options).lean().select('title');
+    return await Area.find(query, {}, options).lean();
   } catch (error: any) {
     throw new Error(error);
   }

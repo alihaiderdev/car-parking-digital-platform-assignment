@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100vh;
+}
+
+body,
+#root,
+main,
+.ant-tabs-content,
+.ant-tabs-tabpane {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background-color: #1677ff;
+}
+
+.ant-tabs .ant-tabs-content-holder {
+  height: calc(100vh - 72px - 32px - 32px);
+}

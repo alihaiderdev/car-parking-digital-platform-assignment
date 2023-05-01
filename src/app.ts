@@ -8,6 +8,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { deserializeUser } from './middlewares';
 import routes from './routes';
+import { runCronJob } from './utils/cron.utils';
 
 const PORT = config.get('port') as number;
 const HOST = config.get('host') as string;
@@ -38,6 +39,7 @@ app.use(mongoSanitize());
 
 app.listen(PORT, HOST, () => {
   console.log(`Server listing at http://${HOST}:${PORT}!`.yellow);
-  connectToDB();
-  routes(app);
+  connectToDB(); // connect to database
+  routes(app); // here is all app routes goes
+  runCronJob(5); // run cron job after every 5 minutes
 });
