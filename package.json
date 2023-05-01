@@ -1,0 +1,38 @@
+{
+  "name": "car-parking-digital-platform-assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "Its an assignment that is provided by Digital Platform Software Company which I have to make using MERN technology and typescript.",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json src/app.ts",
+    "import": "node seeder.ts",
+    "destroy": "node seeder.ts -d"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "colors": "^1.4.0",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.2",
+    "yup": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/config": "^3.3.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.16.3",
+    "@types/yup": "^0.32.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
