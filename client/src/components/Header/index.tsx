@@ -17,8 +17,8 @@ const HeaderComponent: React.FunctionComponent<IHeaderComponentProps> = (props) 
             Digital Platform Car Parking
           </Link>
         </div>
-        <div className="flex items-center justify-between w-1/4">
-          <nav>
+        <div className="flex items-center justify-between">
+          <nav className="mr-8">
             <ul className="flex items-center gap-3">
               <li>
                 <NavLink className={({ isActive }) => getActiveLinkStyling(isActive)} to="/parkings">
