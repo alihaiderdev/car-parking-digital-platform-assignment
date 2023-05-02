@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import { Booking } from '../model/booking.model';
+import { Booking } from '../models/booking.model';
 
 export const runCronJob = (time: number): void => {
   cron.schedule(`*/${time} * * * *`, () => {

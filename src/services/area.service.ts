@@ -1,5 +1,5 @@
 import { FilterQuery, UpdateQuery, QueryOptions } from 'mongoose';
-import { AreaDocument, Area } from '../model/area.model';
+import { AreaDocument, Area } from '../models/area.model';
 
 export async function createArea(input: AreaDocument) {
   try {

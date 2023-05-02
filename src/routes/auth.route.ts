@@ -2,7 +2,7 @@ import express, { Router, Request, Response, NextFunction } from 'express';
 import { registerHandler, loginHandler } from '../controllers/auth.controller';
 import { checkFieldIsUniqueOrNot, validateRequest } from '../middlewares';
 import { loginSchema, registerSchema } from '../schemas/auth.schema';
-import { User } from '../model/user.model';
+import { User } from '../models/user.model';
 
 const authRouter: Router = express.Router();
 

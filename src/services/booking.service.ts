@@ -1,5 +1,5 @@
 import { FilterQuery, UpdateQuery, QueryOptions } from 'mongoose';
-import { BookingDocument, Booking } from '../model/booking.model';
+import { BookingDocument, Booking } from '../models/booking.model';
 import { updateParking } from './parking.service';
 
 export async function createBooking(input: BookingDocument) {

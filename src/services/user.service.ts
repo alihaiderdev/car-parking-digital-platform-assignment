@@ -1,5 +1,5 @@
 import { FilterQuery, QueryOptions } from 'mongoose';
-import { UserDocument, User } from '../model/user.model';
+import { UserDocument, User } from '../models/user.model';
 
 export async function findUser(query: FilterQuery<UserDocument> = {}, options: QueryOptions = {}) {
   try {

@@ -2,7 +2,7 @@ import express, { Router, Request, Response, NextFunction } from 'express';
 import { checkFieldIsUniqueOrNot, checkUserLoggedIn, validateRequest } from '../middlewares';
 import { createAreaSchema, deleteAreaSchema, updateAreaSchema } from '../schemas/area.schema';
 import { createAreaHandler, deleteAreaHandler, getAreaHandler, getAreasHandler, updateAreaHandler } from '../controllers/area.controller';
-import { Area } from '../model/area.model';
+import { Area } from '../models/area.model';
 
 export const areaRouter: Router = express.Router();
 

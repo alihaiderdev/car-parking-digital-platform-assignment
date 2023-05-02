@@ -1,0 +1,652 @@
+{
+	"info": {
+		"_postman_id": "828774df-a52c-4220-8c94-51367686bc6a",
+		"name": "car-parking-digital-platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15452410",
+		"_collection_link": "https://www.postman.com/dark-shuttle-960585/workspace/digital-platform/collection/15452410-828774df-a52c-4220-8c94-51367686bc6a?action=share&creator=15452410&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test1\",\r\n    \"email\": \"test1@gmail.com\",\r\n    \"password\": \"test112345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/auth/register",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWT\", pm.response.json().data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test1@gmail.com\",\r\n    \"password\": \"test112345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/auth/login",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/users",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/users/644f6808f7342115bc692cf5",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"users",
+								"644f6808f7342115bc692cf5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/users/644e08aa24fc48b67f024bd9",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"users",
+								"644e08aa24fc48b67f024bd9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "parking",
+			"item": [
+				{
+					"name": "create parking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Parking spot 8\",\r\n    \"area\": \"644dffb76f8e155d252e236c\",\r\n    \"order\": 8,\r\n     \"position\": {\r\n        \"rowStart\": 4,\r\n        \"rowEnd\": 5,\r\n        \"columnStart\": 4,\r\n        \"columnEnd\": 5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/parkings",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"parkings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update parking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Parking spot 16\",\r\n    \"area\": \"644dfeede3d288119d010d95\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/parkings/644f409cf5880f7ca2616bc8",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"parkings",
+								"644f409cf5880f7ca2616bc8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete parking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/parkings/644f409cf5880f7ca2616bc8",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"parkings",
+								"644f409cf5880f7ca2616bc8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all parkings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/parkings",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"parkings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get parking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/parkings/644f5d5babcd0d7cd7a30f34",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"parkings",
+								"644f5d5babcd0d7cd7a30f34"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "area",
+			"item": [
+				{
+					"name": "create area",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"area 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all areas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get area by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas/644e08aa24fc48b67f024bd9",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas",
+								"644e08aa24fc48b67f024bd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update area by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Area 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas/644e08aa24fc48b67f024bd9",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas",
+								"644e08aa24fc48b67f024bd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete area by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas/644e08aa24fc48b67f024bd9",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas",
+								"644e08aa24fc48b67f024bd9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "booking",
+			"item": [
+				{
+					"name": "get all bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/bookings",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get booking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/bookings/644f7392caa9f7080ce24b11",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"bookings",
+								"644f7392caa9f7080ce24b11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update booking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"area 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/bookings/644e08aa24fc48b67f024bd9",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"bookings",
+								"644e08aa24fc48b67f024bd9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete booking by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/bookings/644f7392caa9f7080ce24b11",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"bookings",
+								"644f7392caa9f7080ce24b11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"area\": \"644dfeede3d288119d010d95\",\r\n    \"parking\": \"644f5d62abcd0d7cd7a30f36\",\r\n    \"startTime\": \"2023-05-01T03:06:06.582Z\",\r\n    \"endTime\": \"2023-05-01T07:35:25.036Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/areas",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"areas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

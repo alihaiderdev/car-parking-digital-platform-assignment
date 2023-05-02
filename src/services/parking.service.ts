@@ -1,5 +1,5 @@
 import { FilterQuery, UpdateQuery, QueryOptions } from 'mongoose';
-import { ParkingDocument, Parking } from '../model/parking.model';
+import { ParkingDocument, Parking } from '../models/parking.model';
 
 export async function createParking(input: ParkingDocument) {
   try {
