@@ -13,6 +13,7 @@ export const AuthVerify = (props: any) => {
   let location = useLocation();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user')!);
+
     if (Object.keys(user)?.length > 0) {
       const decodedJwt = parseJwt(user?.token);
       //@ts-ignore

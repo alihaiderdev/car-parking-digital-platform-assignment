@@ -5,8 +5,6 @@ import { IParking, IParkings } from '../../models/parking.model';
 import { IBooking, IBookings } from '../../models/booking.model';
 import { IUser } from '../../models/user.model';
 
-// credentials: 'include', // This allows server to set cookies
-
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
@@ -16,9 +14,7 @@ export const api = createApi({
       const { getState, extra, endpoint, type, forced } = globalSettings;
       //   const token = getState().auth.token;
 
-      const user: IUser = JSON.parse(localStorage.getItem('user')!);
-
-      console.log({ user }, localStorage.getItem('user'));
+      const user: IUser = JSON.parse(localStorage.getItem('user') || '');
 
       if (Object.keys(user).length > 0) {
         headers.set('Authorization', `Bearer ${user?.token}`);
@@ -27,11 +23,10 @@ export const api = createApi({
     },
     validateStatus: (response, body) => {
       console.log({ response, body });
-      if (body?.isUnAuthorized) {
+      if (response.status === 401) {
         localStorage.setItem('user', JSON.stringify({}));
-        // location.replace('/login');
-        console.log('isUnAuthorized', body?.isUnAuthorized);
-        // redirect('/login');
+        // window.location.replace('/login');
+        console.log('isUnAuthorized', response.status);
         return true;
       } else {
         return true;
