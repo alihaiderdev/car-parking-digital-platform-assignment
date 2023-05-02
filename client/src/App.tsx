@@ -14,6 +14,7 @@ export interface IAppProps {}
 
 const App: React.FunctionComponent<IAppProps> = (props) => {
   const { user, logout } = useAuthContext();
+
   return (
     <>
       <Routes>

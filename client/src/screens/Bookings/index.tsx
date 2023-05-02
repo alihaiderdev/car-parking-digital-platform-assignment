@@ -5,6 +5,7 @@ import { useGetBookingsQuery } from '../../store/features/apiSlice';
 import { Booking } from '../../models/booking.model';
 import moment from 'moment';
 import { duration } from '../../utils';
+import ScrollToTopComponent from '../../components/ScrollToTop';
 
 export interface IBookingScreenProps {}
 
@@ -49,6 +50,7 @@ const BookingScreen: React.FC<IBookingScreenProps> = (props) => {
 
   return (
     <>
+      <ScrollToTopComponent />
       <TabInfoComponent title="Bookings" />
       {!getAllIsLoading && getAllIsFetching && getAllData?.error ? (
         <Alert message="Error" description={getAllData?.message || 'Something went wrong!'} type="error" showIcon />

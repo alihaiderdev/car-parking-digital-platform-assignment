@@ -9,12 +9,15 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: constants.SERVER_BASE_URL,
-    credentials: 'include',
+    // credentials: 'include',
     prepareHeaders: (headers, globalSettings) => {
       const { getState, extra, endpoint, type, forced } = globalSettings;
-      //   const token = getState().auth.token;
+      // const token = getState().auth.token;
+      //   const user: IUser = JSON.parse(localStorage.getItem('user') || '{}');
 
-      const user: IUser = JSON.parse(localStorage.getItem('user') || '');
+      const user: IUser = JSON.parse(localStorage.getItem('user') as string);
+
+      console.log("localStorage.getItem('user')", localStorage.getItem('user'));
 
       if (Object.keys(user).length > 0) {
         headers.set('Authorization', `Bearer ${user?.token}`);
@@ -24,7 +27,7 @@ export const api = createApi({
     validateStatus: (response, body) => {
       console.log({ response, body });
       if (response.status === 401) {
-        localStorage.setItem('user', JSON.stringify({}));
+        // localStorage.setItem('user', JSON.stringify({}));
         // window.location.replace('/login');
         console.log('isUnAuthorized', response.status);
         return true;

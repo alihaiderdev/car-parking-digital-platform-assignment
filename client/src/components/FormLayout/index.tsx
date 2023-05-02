@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import ScrollToTopComponent from '../ScrollToTop';
 
 export interface IFormLayoutComponentProps {
   imageUrl?: string;
@@ -13,6 +14,7 @@ const FormLayoutComponent: React.FunctionComponent<IFormLayoutComponentProps> = 
 }) => {
   return (
     <section className="h-screen">
+      <ScrollToTopComponent />
       <div className="container  xl:max-w-screen-xl  h-full px-6 py-24 mx-auto">
         <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
           <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">

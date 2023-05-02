@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { IUser } from '../models/user.model';
 
 const parseJwt = (token: string): string | null => {
   try {
@@ -12,7 +13,9 @@ const parseJwt = (token: string): string | null => {
 export const AuthVerify = (props: any) => {
   let location = useLocation();
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user')!);
+    const user: IUser = JSON.parse(localStorage.getItem('user') as string);
+    // const { user } = useAuthContext();
+    console.log({ user });
 
     if (Object.keys(user)?.length > 0) {
       const decodedJwt = parseJwt(user?.token);

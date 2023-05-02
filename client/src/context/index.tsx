@@ -23,10 +23,14 @@ export function AuthProvider({ children }: TAuthProviderProps) {
   const navigate = useNavigate();
 
   const login = (user: IUser) => {
+    // localStorage.setItem('user', JSON.stringify(user));
     setUser(user);
   };
 
+  console.log('user', user);
+
   const logout = () => {
+    // localStorage.setItem('user', JSON.stringify({}));
     setUser({});
     navigate('/login');
   };

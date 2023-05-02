@@ -7,6 +7,7 @@ import { Booking } from '../../models/booking.model';
 import { Area } from '../../models/area.model';
 import { Parking } from '../../models/parking.model';
 import moment from 'moment';
+import ScrollToTopComponent from '../../components/ScrollToTop';
 
 const getDisabledHours = (): number[] => {
   //   return Array.from({ length: moment().hour() }, (_, i) => i);
@@ -87,6 +88,7 @@ const BookedParkingScreen: React.FC<IBookedParkingScreenProps> = (props) => {
   };
   return (
     <>
+      <ScrollToTopComponent />
       {contextHolder} <TabInfoComponent title="Booked Parking" />
       <Form
         className="w-2/4 mx-auto"
