@@ -17,8 +17,6 @@ export const api = createApi({
 
       const user: IUser = JSON.parse(localStorage.getItem('user') as string);
 
-      console.log("localStorage.getItem('user')", localStorage.getItem('user'));
-
       if (Object.keys(user).length > 0) {
         headers.set('Authorization', `Bearer ${user?.token}`);
       }
@@ -27,9 +25,8 @@ export const api = createApi({
     validateStatus: (response, body) => {
       console.log({ response, body });
       if (response.status === 401) {
-        // localStorage.setItem('user', JSON.stringify({}));
-        // window.location.replace('/login');
-        console.log('isUnAuthorized', response.status);
+        localStorage.setItem('user', JSON.stringify({}));
+        window.location.replace('/login');
         return true;
       } else {
         return true;

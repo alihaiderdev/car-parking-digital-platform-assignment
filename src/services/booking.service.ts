@@ -8,7 +8,6 @@ export async function createBooking(input: BookingDocument) {
 
     if (booking) {
       const parking = await updateParking({ _id: input.parking }, { isBooked: true }, { new: true });
-      console.log({ booking, parking });
       return booking;
     }
   } catch (error: any) {

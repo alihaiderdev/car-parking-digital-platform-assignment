@@ -12,7 +12,7 @@ import {
 export const parkingRouter: Router = express.Router();
 
 parkingRouter.post('/', [checkUserLoggedIn, validateRequest(createParkingSchema)], createParkingHandler);
-parkingRouter.get('/', checkUserLoggedIn, getParkingsHandler);
-parkingRouter.get('/:parkingId', checkUserLoggedIn, getParkingHandler);
+parkingRouter.get('/', getParkingsHandler);
+parkingRouter.get('/:parkingId', getParkingHandler);
 parkingRouter.patch('/:parkingId', [checkUserLoggedIn, validateRequest(updateParkingSchema)], updateParkingHandler);
 parkingRouter.delete('/:parkingId', [checkUserLoggedIn, validateRequest(deleteParkingSchema)], deleteParkingHandler);

@@ -78,10 +78,8 @@ const BookedParkingScreen: React.FC<IBookedParkingScreenProps> = (props) => {
 
   const onBookedParking = async (values: Booking): Promise<void> => {
     try {
-      console.log('Form values: ', values);
       await bookedParking(values);
     } catch (error: any) {
-      console.log();
       console.log('Error: ', error.message);
       openNotificationWithIcon(api, 'error', error.message || 'Something went wrong!');
     }

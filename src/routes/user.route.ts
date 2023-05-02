@@ -5,8 +5,8 @@ import { deleteUserSchema } from '../schemas/user.schema';
 
 const userRouter: Router = express.Router();
 
-userRouter.get('/', checkUserLoggedIn, getUsersHandler);
-userRouter.get('/:userId', checkUserLoggedIn, getUserHandler);
+userRouter.get('/', getUsersHandler);
+userRouter.get('/:userId', getUserHandler);
 userRouter.delete('/:userId', [checkUserLoggedIn, validateRequest(deleteUserSchema)], deleteUserHandler);
 
 export { userRouter };

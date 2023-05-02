@@ -12,7 +12,7 @@ import {
 export const bookingRouter: Router = express.Router();
 
 bookingRouter.post('/', [checkUserLoggedIn, validateRequest(createBookingSchema)], createBookingHandler);
-bookingRouter.get('/', checkUserLoggedIn, getBookingsHandler);
-bookingRouter.get('/:bookingId', checkUserLoggedIn, getBookingHandler);
+bookingRouter.get('/', getBookingsHandler);
+bookingRouter.get('/:bookingId', getBookingHandler);
 bookingRouter.patch('/:bookingId', [checkUserLoggedIn, validateRequest(updateBookingSchema)], updateBookingHandler);
 bookingRouter.delete('/:bookingId', [checkUserLoggedIn, validateRequest(deleteBookingSchema)], deleteBookingHandler);

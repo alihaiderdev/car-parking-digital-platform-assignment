@@ -15,8 +15,8 @@ areaRouter.post(
   ],
   createAreaHandler
 );
-areaRouter.get('/', checkUserLoggedIn, getAreasHandler);
-areaRouter.get('/:areaId', checkUserLoggedIn, getAreaHandler);
+areaRouter.get('/', getAreasHandler);
+areaRouter.get('/:areaId', getAreaHandler);
 areaRouter.patch(
   '/:areaId',
   [
