@@ -4,6 +4,7 @@ import TabInfoComponent from '../../components/TabInfo';
 import { useGetBookingsQuery } from '../../store/features/apiSlice';
 import { Booking } from '../../models/booking.model';
 import moment from 'moment';
+import { duration } from '../../utils';
 
 export interface IBookingScreenProps {}
 
@@ -33,8 +34,11 @@ const BookingScreen: React.FC<IBookingScreenProps> = (props) => {
     },
     {
       title: 'Duration',
-      dataIndex: 'duration'
-      //   render: (_, row) => moment.duration(moment('then').diff(moment('now'))).format('d [Days] hh:mm:ss')
+      dataIndex: 'duration',
+      render: (_, booking: Booking) => {
+        const { hours, minutes, seconds, ...resizeTo } = duration(booking.startTime, booking.endTime);
+        return `${hours}h ${minutes}m ${seconds}s`;
+      }
     },
     {
       title: 'Date',

@@ -8,7 +8,7 @@ const LayoutComponent: React.FunctionComponent<ILayoutComponentProps> = ({ child
   return (
     <>
       <HeaderComponent />
-      <main className="mt-[72px] container mx-auto py-8">{children}</main>
+      <main className="mt-[72px] container xl:max-w-screen-xl mx-auto py-8">{children}</main>
     </>
   );
 };

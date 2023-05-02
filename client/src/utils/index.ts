@@ -25,10 +25,7 @@ export const AuthVerify = (props: any) => {
   return null;
 };
 
-export const stringFirstLetterToUpperCase = (string: string) => string.charAt(0).toUpperCase() + string.slice(1);
-
 export const range = (start: number, stop: number, step: number = 1): number[] => {
-  // console.log({ start, stop, step });
   if (typeof stop == 'undefined') {
     stop = start;
     start = 0;
@@ -39,26 +36,6 @@ export const range = (start: number, stop: number, step: number = 1): number[] =
   }
   return result;
 };
-
-export const dateTimeFormatter = (date: Date) => {
-  if (date) {
-    return `${new Date(date).toDateString()} - ${new Date(date).toLocaleTimeString()}`;
-  }
-};
-
-export const getBase64 = (file: Blob) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      console.log('onload');
-      resolve(reader.result);
-    };
-    reader.onerror = (error) => {
-      console.log('onerror');
-      reject(error);
-    };
-  });
 
 export const validateMessages = {
   required: '${label} is required!',
@@ -72,16 +49,23 @@ export const validateMessages = {
   }
 };
 
-export const formatDate = (date: Date) => {
-  let d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-  return [year, month, day].join('-');
-};
-
+export function duration(startTime: string, endTime: string) {
+  // @ts-ignore
+  let d = new Date(startTime) - new Date(endTime);
+  let weekdays = Math.floor(d / 1000 / 60 / 60 / 24 / 7);
+  let days = Math.floor(d / 1000 / 60 / 60 / 24 - weekdays * 7);
+  let hours = Math.floor(d / 1000 / 60 / 60 - weekdays * 7 * 24 - days * 24);
+  let minutes = Math.floor(d / 1000 / 60 - weekdays * 7 * 24 * 60 - days * 24 * 60 - hours * 60);
+  let seconds = Math.floor(d / 1000 - weekdays * 7 * 24 * 60 * 60 - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60);
+  let milliseconds = Math.floor(d - weekdays * 7 * 24 * 60 * 60 * 1000 - days * 24 * 60 * 60 * 1000 - hours * 60 * 60 * 1000 - minutes * 60 * 1000 - seconds * 1000);
+  let t: any = {};
+  ['weekdays', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'].forEach((q) => {
+    if (eval(q) > 0) {
+      t[q] = eval(q);
+    }
+  });
+  return t;
+}
 export const openNotificationWithIcon = (api: any, type: string, message: string): void => {
   if (type === 'success') {
     api[type]({

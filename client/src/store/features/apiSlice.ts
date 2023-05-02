@@ -3,6 +3,7 @@ import { constants } from '../../constants';
 import { IArea, IAreas } from '../../models/area.model';
 import { IParking, IParkings } from '../../models/parking.model';
 import { IBooking, IBookings } from '../../models/booking.model';
+import { IUser } from '../../models/user.model';
 
 // credentials: 'include', // This allows server to set cookies
 
@@ -13,10 +14,14 @@ export const api = createApi({
     credentials: 'include',
     prepareHeaders: (headers, globalSettings) => {
       const { getState, extra, endpoint, type, forced } = globalSettings;
-      // const token = getState().auth.token;
-      const token = JSON.parse(localStorage.getItem('user')!)?.token;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
+      //   const token = getState().auth.token;
+
+      const user: IUser = JSON.parse(localStorage.getItem('user')!);
+
+      console.log({ user }, localStorage.getItem('user'));
+
+      if (Object.keys(user).length > 0) {
+        headers.set('Authorization', `Bearer ${user?.token}`);
       }
       return headers;
     },
@@ -24,10 +29,10 @@ export const api = createApi({
       console.log({ response, body });
       if (body?.isUnAuthorized) {
         localStorage.setItem('user', JSON.stringify({}));
-        // location.replace('/sign-in');
+        // location.replace('/login');
         console.log('isUnAuthorized', body?.isUnAuthorized);
-        // redirect('/sign-in');
-        return false;
+        // redirect('/login');
+        return true;
       } else {
         return true;
       }

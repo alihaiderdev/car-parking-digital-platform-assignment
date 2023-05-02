@@ -11,7 +11,7 @@ const HeaderComponent: React.FunctionComponent<IHeaderComponentProps> = (props) 
 
   return (
     <header className="bg-slate-200 py-4 fixed top-0 z-50 w-full">
-      <div className="flex justify-between items-center container mx-auto">
+      <div className="flex justify-between items-center container xl:max-w-screen-xl mx-auto">
         <div className="logo">
           <Link to={'/'} className="text-xl font-bold">
             Digital Platform Car Parking
