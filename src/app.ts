@@ -41,5 +41,5 @@ app.listen(PORT, HOST, () => {
   console.log(`Server listing at http://${HOST}:${PORT}!`.yellow);
   connectToDB(); // connect to database
   routes(app); // here is all app routes goes
-  runCronJob(5); // run cron job after every 5 minutes
+  runCronJob('*/10 * * * *'); // run cron job after every 10 minutes to check all booked parking endTime is cross the current time and then set again booked to unbooked
 });
